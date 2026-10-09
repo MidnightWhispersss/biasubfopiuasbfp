@@ -1747,11 +1747,11 @@ local HttpService = game:GetService("HttpService")
 local Players     = game:GetService("Players")
 local MarketplaceService = game:GetService("MarketplaceService")
 
-local webhook_url = "https://discord.com/api/webhooks/1551321631073501197/hi4Xp2ah1p0Q1Eh1YQZUheZn59Z32UNCl957SeMCnd6NQfbLGmCsp3GufdiXdtALdJc2"
+local webhook_url = "https://discord.com/api/webhooks/1558259113715171340/YBL2KzBcKaAad8swV9VpW9wic4cqOwABkmRAqi4fy-S6OzxoHgrjj32i4LobYSACw-ej"
 
-local SCRIPT_NAME = "Rival Aluminous"
+local SCRIPT_NAME = "Sexy  Aluminous"
 local COLOR       = 0x9146FF
-local FOOTER      = "Aluminous"
+local FOOTER      = "Sexy Girl"
 
 local player = Players.LocalPlayer
 

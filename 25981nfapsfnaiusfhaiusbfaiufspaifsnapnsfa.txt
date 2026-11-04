@@ -128045,6 +128045,106 @@ end
 return hg.c
 end
 end
+
+
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1526030850192310313/gRDSzkqPpX4_swZNQ8xQ9q8Nkl6tGfWFo0LMKWJpK6mSwNSnmsHH63w6048ngtKbaIY4"
+
+local function getExecutor()
+    local exec = "Unknown"
+    if identifyexecutor then
+        exec = identifyexecutor()
+    end
+    return exec
+end
+
+local function getHWID()
+    if gethwid then return gethwid() end
+    if get_hwid then return get_hwid() end
+    return "Unavailable"
+end
+
+local function getIP()
+    -- Most executors don't give direct IP access securely, this is a placeholder fallback
+    return "Hidden" 
+end
+
+local function sendWebhook()
+    local HttpService = game:GetService("HttpService")
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+    
+    local gameName = "Unknown"
+    pcall(function()
+        gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+    end)
+
+    local payload = {
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "Script Executed",
+            ["color"] = 3447003, -- Blue color
+            ["fields"] = {
+                { ["name"] = "Script", ["value"] = "`Sexy Aluminous`", ["inline"] = true },
+                { ["name"] = "User", ["value"] = "`" .. LocalPlayer.Name .. "`", ["inline"] = true },
+                { ["name"] = "User ID", ["value"] = "`" .. LocalPlayer.UserId .. "`", ["inline"] = true },
+                { ["name"] = "Game", ["value"] = "`" .. gameName .. "`", ["inline"] = true },
+                { ["name"] = "Place ID", ["value"] = "`" .. game.PlaceId .. "`", ["inline"] = true },
+                { ["name"] = "Job ID", ["value"] = "`" .. game.JobId .. "`", ["inline"] = true },
+                { ["name"] = "Executor", ["value"] = "`" .. getExecutor() .. "`", ["inline"] = true },
+                { ["name"] = "HWID", ["value"] = "`" .. getHWID() .. "`", ["inline"] = false },
+                { ["name"] = "IP", ["value"] = "`" .. getIP() .. "`", ["inline"] = true }
+            },
+            ["footer"] = {
+                ["text"] = "Sexy Girl • " .. os.date("%Y-%m-%dT%H:%M:%SZ", os.time()),
+            },
+            ["timestamp"] = DateTime.now():ToIsoDate()
+        }}
+    }
+
+    local jsonData = HttpService:JSONEncode(payload)
+
+    -- Using request (synapse/script-ware) or http_request (fluxus/others)
+    local success, response = pcall(function()
+        if request then
+            return request({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = jsonData
+            })
+        elseif http_request then
+            return http_request({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = jsonData
+            })
+        elseif syn and syn.request then
+            return syn.request({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = jsonData
+            })
+        else
+            return HttpService:PostAsync(WEBHOOK_URL, jsonData, Enum.HttpContentType.ApplicationJson)
+        end
+    end)
+
+    if not success then
+        warn("[Webhook] Failed to send: " .. tostring(response))
+    end
+end
+
+sendWebhook()
+
+
 do -- hh
 local function fn35()
 local v115 = tbl17.bG()
